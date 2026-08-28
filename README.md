@@ -14,7 +14,7 @@ PowerShell.exe
 
 Windows Task Scheduler will be used to run the command when a user logs into the system.  The argument for the PowerShell command is the workhorse of this demo.  It defines how often the capture occurs and the broker to send the data to.  The scheduled task will need to be set up so that it only runs when a user has logged on.  
 
-https://www.cloudacm.com/wp-content/uploads/2026/08/Node-Red-Flow.png
+<img src="https://www.cloudacm.com/wp-content/uploads/2026/08/Node-Red-Flow.png" />
 
 The Node Red flow is similar to the earlier video stream process.  The key difference is that the base64 data originates from the subscribed MQTT topic.  All other aspects of the flow are identical to the earlier demo.
 
