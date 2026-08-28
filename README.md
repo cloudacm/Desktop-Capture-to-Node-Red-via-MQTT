@@ -10,8 +10,10 @@ This post uses a similar process to an earlier post (https://www.cloudacm.com/?p
 
 PowerShell is a Windows native application that will be used to capture the desktop.  PowerShell will call a MQTT publish process to forward the base64 data to a broker.  Although the MQTT application is not native, there are other processes that can handle the data in a similar way.
 
+<pre>
 PowerShell.exe 
 -WindowStyle hidden -NoProfile -Command "Add-Type -AssemblyName System.Windows.Forms, System.Drawing; while($true) { $b = New-Object System.Drawing.Bitmap([System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Width, [System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Height); $g = [System.Drawing.Graphics]::FromImage($b); $g.CopyFromScreen(0, 0, 0, 0, $b.Size); $r = New-Object System.Drawing.Bitmap($b, [int]($b.Width * 180 / $b.Height), 180); $fp = 'C:\Tasks\Desktop.png'; $r.Save($fp); Start-Sleep -Milliseconds 500; & mosquitto_pub -h <MQTTBrokerHost> -t <TopicHost>/Desktop -f $fp; $g.Dispose(); $b.Dispose(); $r.Dispose(); Start-Sleep -Seconds 10 }"
+</pre>
 
 Windows Task Scheduler will be used to run the command when a user logs into the system.  The argument for the PowerShell command is the workhorse of this demo.  It defines how often the capture occurs and the broker to send the data to.  The scheduled task will need to be set up so that it only runs when a user has logged on.  
 
