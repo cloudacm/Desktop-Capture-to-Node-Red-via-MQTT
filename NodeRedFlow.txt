@@ -1,0 +1,149 @@
+[
+    {
+        "id": "f35847f11a3bfda3",
+        "type": "mqtt in",
+        "z": "f4c5b260f157090c",
+        "name": "",
+        "topic": "<TopicHost>/Desktop",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "4d6c5d7fa322ba19",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 2020,
+        "y": 2320,
+        "wires": [
+            [
+                "695040002cf38600"
+            ]
+        ]
+    },
+    {
+        "id": "695040002cf38600",
+        "type": "function",
+        "z": "f4c5b260f157090c",
+        "name": "Image Loads",
+        "func": "if (msg.payload != \"\") {\n    return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2270,
+        "y": 2320,
+        "wires": [
+            [
+                "1cae61e0ee6d6e99"
+            ]
+        ]
+    },
+    {
+        "id": "1cae61e0ee6d6e99",
+        "type": "base64",
+        "z": "f4c5b260f157090c",
+        "name": "Image File Encoding",
+        "action": "str",
+        "property": "payload",
+        "x": 2540,
+        "y": 2320,
+        "wires": [
+            [
+                "b41b5dd17f821bae"
+            ]
+        ]
+    },
+    {
+        "id": "b41b5dd17f821bae",
+        "type": "template",
+        "z": "f4c5b260f157090c",
+        "name": "Embed Image",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<img width=\"360px\" height=\"240px\" src=\"data:image/jpg;base64,{{{payload}}}\">",
+        "output": "str",
+        "x": 2820,
+        "y": 2320,
+        "wires": [
+            [
+                "c9f49649420abde0"
+            ]
+        ]
+    },
+    {
+        "id": "c9f49649420abde0",
+        "type": "ui_template",
+        "z": "f4c5b260f157090c",
+        "group": "f52e561bf87c10f6",
+        "name": "Desktop",
+        "order": 17,
+        "width": "7",
+        "height": "5",
+        "format": "<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 3080,
+        "y": 2320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4d6c5d7fa322ba19",
+        "type": "mqtt-broker",
+        "name": "MQTT Broker Name",
+        "broker": "MQTT Broker IP Address",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f52e561bf87c10f6",
+        "type": "ui_group",
+        "name": "Topic Host (MQTT) ",
+        "tab": "1e3c96d236b23028",
+        "order": 5,
+        "disp": true,
+        "width": "7",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1e3c96d236b23028",
+        "type": "ui_tab",
+        "name": "Systems",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
