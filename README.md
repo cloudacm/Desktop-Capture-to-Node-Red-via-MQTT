@@ -3,8 +3,9 @@ https://www.cloudacm.com/?p=5414
 
 This post uses a similar process to an earlier post (https://www.cloudacm.com/?p=3974) where images are piped through a MQTT broker.  This post will not be using FFMpeg or images captured with a camera.  Instead it will use a native application to capture the desktop screen.  
 
-https://www.cloudacm.com/wp-content/uploads/2026/08/Widget-Node-Red.png
-https://www.cloudacm.com/wp-content/uploads/2026/08/Widget-Desktop.png
+<img src="https://www.cloudacm.com/wp-content/uploads/2026/08/Widget-Node-Red.png" />
+<br>
+<img src="https://www.cloudacm.com/wp-content/uploads/2026/08/Widget-Desktop.png" /> 
 
 PowerShell is a Windows native application that will be used to capture the desktop.  PowerShell will call a MQTT publish process to forward the base64 data to a broker.  Although the MQTT application is not native, there are other processes that can handle the data in a similar way.
 
